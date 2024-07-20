@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Career Comparison</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // Smooth Scrolling for Navigation Links
+    const navLinks = document.querySelectorAll('nav ul li a');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            
+            window.scrollTo({
+                top: targetSection.offsetTop - document.querySelector('header').offsetHeight,
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Collapsible Sections
+    const collapsibles = document.querySelectorAll('.collapsible');
+    collapsibles.forEach(button => {
+        button.addEventListener('click', function() {
+            this.classList.toggle('active');
+            const content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }
+        });
+    });
+
+    // Chart.js Integration for Salary Chart
+    const ctx = document.getElementById('salaryChart').getContext('2d');
+    const salaryChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Computer Engineering', 'Electrical Engineering'],
+            datasets: [
+                {
+                    label: 'Low Salary',
+                    data: [59987, 65998],
+                    backgroundColor: '#3e95cd'
+                },
+                {
+                    label: 'Median Salary',
+                    data: [93600, 94993.],
+                    backgroundColor: '#8e5ea2'
+                },
+                {
+                    label: 'High Salary',
+                    data: [132496, 150404],
+                    backgroundColor: '#3cba9f'
+                }
+            ]
+        },
+        options: {
+            scales: {
+                x: {
+                    stacked: false
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    });
+
+    </script>
+    <style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        background-color: #ede8f5;
+    }
+
+    header {
+        background: #3d52a0;
+        color: #fff;
+        padding: 1rem 0;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+        margin: 0;
+    }
+
+    header nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    header nav ul li {
+        margin: 0 15px;
+    }
+
+    header nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.2rem;
+    }
+
+    header #searchBar {
+        margin-top: 10px;
+        padding: 10px;
+        width: 80%;
+        max-width: 600px;
+        border: none;
+        border-radius: 4px;
+    }
+
+    main {
+        padding: 2rem;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    section {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+        font-size: 2rem;
+        color: #ede8f5;
+        font-weight: 400;
+        margin-bottom: 1rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+        color: #333;
+        font-weight: 400;
+        margin-bottom: 1rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        color: #333;
+        font-weight: 400;
+        margin-bottom: 1rem;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    table, th, td {
+        border: 1px solid #ccc;
+    }
+
+    th, td {
+        padding: 0.75rem;
+        text-align: left;
+    }
+
+    th {
+        background: #007BFF;
+        color: #fff;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    td {
+        background: #f9f9f9;
+    }
+
+    tr:nth-child(even) td {
+        background: #f1f1f1;
+    }
+
+    footer {
+        background: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1rem 0;
+        margin-top: 2rem;
+    }
+
+    .collapsible {
+        background-color: #658ae6;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        border-radius: 4px;
+        margin-top: 10px;
+        transition: background-color 0.2s ease;
+    }
+
+    .collapsible:hover, .collapsible.active {
+        background-color: #0056b3;
+    }
+
+    .content {
+        padding: 0 18px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        background-color: #f1f1f1;
+        border-radius: 4px;
+        margin-top: 10px;
+    }
+
+    button:focus {
+        outline: none;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Engineering Career Comparison</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#computer-engineering">Computer Engineering</a></li>
+                <li><a href="#electrical-engineering">Electrical Engineering</a></li>
+                <li><a href="#comparison">Comparison</a></li>
+                <li><a href="#resources">Resources</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <h2>Welcome to the Engineering Career Comparison Hub</h2>
+            <p>Engineering is a field of innovation and development, with numerous specializations offering diverse career opportunities. This website aims to compare two prominent engineering fields: computer engineering and electrical engineering. Explore the pages to understand the educational requirements, job roles, industry applications, and career prospects of each field.</p>
+        </section>
+
+        <section id="computer-engineering">
+            <h2>Computer Engineering: A Deep Dive</h2>
+            <p>Computer engineering focuses on the design, development, and maintenance of computer systems and components. This includes both hardware and software aspects.</p>
+            <button class="collapsible">Educational Requirements</button>
+            <div class="content">
+                <p>Bachelor's degree in computer engineering, electrical or electronics engineering, engineering physics or computer science. A master's or doctoral degree in a related engineering discipline may be required. Licensing by a provincial or territorial association of professional engineers is required to approve engineering drawings and reports and to practise as a Professional Engineer (P.Eng.). Engineers are eligible for registration following graduation from an accredited educational program, three or four years of supervised work experience in engineering and passing a professional practice examination.</p>
+            </div>
+            <button class="collapsible">Job Roles and Responsibilities</button>
+            <div class="content">
+                <p>Common job titles include software developer, hardware engineer, systems architect, and network engineer. Responsibilities often involve coding, debugging, software design, and hardware integration.</p>
+            </div>
+            <button class="collapsible">Industry Applications</button>
+            <div class="content">
+                <p>Computer engineers are employed in various industries, including information technology, finance, healthcare, and telecommunications. They work for tech companies, startups, and research institutions.</p>
+            </div>
+            <button class="collapsible">Salary and Job Market Trends</button>
+            <div class="content">
+                <p>The demand for computer engineers is high due to the rapid growth of technology and digital transformation across industries. This leads to competitive salaries and ample job opportunities.</p>
+            </div>
+        </section>
+
+        <section id="electrical-engineering">
+            <h2>Electrical Engineering: A Deep Dive</h2>
+            <p>Electrical engineering involves designing, developing, testing, and managing the manufacturing of electrical equipment, components, and systems. This field covers a wide range of technologies from small circuits to large power networks.</p>
+            <button class="collapsible">Educational Requirements</button>
+            <div class="content">
+                <p>A bachelor's degree in electrical or electronics engineering or in an appropriate related engineering discipline is required. A master's or doctoral degree in a related engineering discipline may be required. Licensing by a provincial or territorial association of professional engineers is required to approve engineering drawings and reports and to practise as a Professional Engineer (P.Eng.). Engineers are eligible for registration following graduation from an accredited educational program, and after three or four years of supervised work experience in engineering and passing a professional practice examination. Leadership in Energy and Environmental Design (LEED) certification is offered by the Canada Green Building Council and may be required by some employers.</p>
+            </div>
+            <button class="collapsible">Job Roles and Responsibilities</button>
+            <div class="content">
+                <p>Electrical engineers may hold titles such as electrical engineer, power systems engineer, and telecommunications engineer. Their tasks include circuit design, power generation and distribution, and control systems development.</p>
+            </div>
+            <button class="collapsible">Industry Applications</button>
+            <div class="content">
+                <p>They are employed in industries such as energy, manufacturing, telecommunications, aerospace, and utilities. Electrical engineers are crucial in ensuring the functionality and safety of electrical systems.</p>
+            </div>
+            <button class="collapsible">Salary and Job Market Trends</button>
+            <div class="content">
+                <p>The job market for electrical engineers is stable, with consistent demand in traditional sectors like energy and emerging fields such as renewable energy and smart grids.</p>
+            </div>
+        </section>
+
+        <section id="comparison">
+            <h2>Comparison</h2>
+            
+            <!-- Comparison Table -->
+            <table>
+                <tr>
+                    <th>Aspect</th>
+                    <th>Computer Engineering</th>
+                    <th>Electrical Engineering</th>
+                </tr>
+                <tr>
+                    <td>Educational Path</td>
+                    <td>Bachelor's degree in computer engineering, electrical or electronics engineering, engineering physics or computer science.
+                        A master's or doctoral degree in a related engineering discipline may be required.
+                        Licensing by a provincial or territorial association of professional engineers is required to approve engineering drawings and reports and to practise as a Professional Engineer (P.Eng.).
+                        Engineers are eligible for registration following graduation from an accredited educational program, three or four years of supervised work experience in engineering and passing a professional practice examination.</td>
+                    <td>A bachelor's degree in electrical or electronics engineering or in an appropriate related engineering discipline is required.
+                        A master's or doctoral degree in a related engineering discipline may be required.
+                        Licensing by a provincial or territorial association of professional engineers is required to approve engineering drawings and reports and to practise as a Professional Engineer (P.Eng.).
+                        Engineers are eligible for registration following graduation from an accredited educational program, and after three or four years of supervised work experience in engineering and passing a professional practice examination.
+                        Leadership in Energy and Environmental Design (LEED) certification is offered by the Canada Green Building Council and may be required by some employers.</td>
+                </tr>
+                <tr>
+                    <td>Job Roles</td>
+                    <td>Software Developer, Hardware Engineer, Systems Architect</td>
+                    <td>Electrical Engineer, Power Systems Engineer, Telecommunications Engineer</td>
+                </tr>
+                <tr>
+                    <td>Industry Applications</td>
+                    <td>Manufacturing, Wholesale trade, Information and cultural industries, Finance and insurance, Professional, scientific and technical services.</td>
+                    <td>Utilities, Construction, Manufacturing, Wholesale trade, Professional, scientific and technical services.</td>
+                </tr>
+                <tr>
+                    <td>Salary Trends</td>
+                    <td>High demand, competitive salaries</td>
+                    <td>Stable demand, consistent growth</td>
+                </tr>
+                <tr>
+                    <td>Core Skills</td>
+                    <td>Programming, Software Development, Computer Hardware Design</td>
+                    <td>Circuit Design, Electrical Systems, Power Distribution</td>
+                </tr>
+                <tr>
+                    <td>Key Technologies</td>
+                    <td>AI, Machine Learning, Cybersecurity, Cloud Computing</td>
+                    <td>Renewable Energy, Smart Grids, Telecommunications</td>
+                </tr>
+                <tr>
+                    <td>Certifications</td>
+                    <td>CompTIA, Cisco, Microsoft, AWS</td>
+                    <td>FE (Fundamentals of Engineering), PE (Professional Engineer)</td>
+                </tr>
+                <tr>
+                    <td>Work Environment</td>
+                    <td>Offices, Labs, Remote Work</td>
+                    <td>Offices, Labs, Field Work</td>
+                </tr>
+                <tr>
+                    <td>Professional Organizations</td>
+                    <td>IEEE, ACM</td>
+                    <td>IEEE, NSPE</td>
+                </tr>
+                <tr>
+                    <td>Job Satisfaction</td>
+                    <td>High satisfaction due to innovation and technology advancements</td>
+                    <td>High satisfaction due to impactful and diverse projects</td>
+                </tr>
+            </table>
+            
+            <!-- Descriptive Text -->
+            <p>Both computer engineering and electrical engineering offer unique challenges and rewards. Computer engineering often involves working with the latest technologies and innovation in software and hardware integration, while electrical engineering focuses on developing and maintaining electrical systems and infrastructures that are vital to modern society.</p>
+            
+            <!-- Chart -->
+            <h3>Average Wage Comparison</h3>
+            <p>Below is a chart for the avrage wage of Computer engineers and Electrical Engineers across Ontario.</p>
+            <canvas id="salaryChart"></canvas>
+
+        <section id="resources">
+            <h2>Resources</h2>
+            <ul>
+                <li><a href="https://www.services.labour.gov.on.ca/labourmarket-ui/jobProfile?nocCode=21311">Computer Engineering Job Profile</a></li>
+                <li><a href="https://www.services.labour.gov.on.ca/labourmarket-ui/jobProfile?nocCode=21310">Electrical Engineering Job Profile</a></li>
+                <li><a href="https://www.ieee.org/">IEEE - Institute of Electrical and Electronics Engineers</a></li>
+                <li><a href="https://www.acm.org/">ACM - Association for Computing Machinery</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Engineering Career Comparison Hub. All rights reserved.</p>
+    </footer>
+</body>
+</html>
