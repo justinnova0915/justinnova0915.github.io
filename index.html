@@ -6,73 +6,130 @@
     <title>Engineering Career Comparison</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-    // Smooth Scrolling for Navigation Links
-    const navLinks = document.querySelectorAll('nav ul li a');
+            document.addEventListener('DOMContentLoaded', function() {
+            // Smooth Scrolling for Navigation Links
+            const navLinks = document.querySelectorAll('nav ul li a');
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetId);
-            
-            window.scrollTo({
-                top: targetSection.offsetTop - document.querySelector('header').offsetHeight,
-                behavior: 'smooth'
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    window.scrollTo({
+                        top: targetSection.offsetTop - document.querySelector('header').offsetHeight,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Collapsible Sections
+            const collapsibles = document.querySelectorAll('.collapsible');
+            collapsibles.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    }
+                });
+            });
+
+            // Chart.js Integration for Salary Chart
+            const ctxSalary = document.getElementById('salaryChart').getContext('2d');
+            const salaryChart = new Chart(ctxSalary, {
+                type: 'bar',
+                data: {
+                    labels: ['Computer Engineering', 'Electrical Engineering'],
+                    datasets: [
+                        {
+                            label: 'Low Salary',
+                            data: [59987, 65998],
+                            backgroundColor: '#3e95cd',
+                        },
+                        {
+                            label: 'Median Salary',
+                            data: [93600, 94993],
+                            backgroundColor: '#8e5ea2',
+                        },
+                        {
+                            label: 'High Salary',
+                            data: [132496, 150404],
+                            backgroundColor: '#3cba9f',
+
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            stacked: false,
+                            beginAtZero: true,
+                        },
+                        y: {
+                            beginAtZero: true,
+                        }
+                    },
+                }
+            });
+
+            // Chart.js Integration for Job Postings Line Graph
+            const ctxJobPostings = document.getElementById('jobPostingsChart').getContext('2d');
+            const jobPostingsChart = new Chart(ctxJobPostings, {
+                type: 'line',
+                data: {
+                    labels: ['2019', '2020', '2021', '2022', '2023'],
+                    datasets: [
+                        {
+                            label: 'Computer Engineering',
+                            data: [4459, 3916, 6504, 7803, 5612],
+                            borderColor: '#3e95cd',
+                            fill: false,
+                            tension: 0.1,
+                            pointRadius: 8,
+                            pointHitRadius: 100,
+                            pointHoverRadius: 10
+                        },
+                        {
+                            label: 'Electrical Engineering',
+                            data: [1038, 794, 1465, 2587, 2721],
+                            borderColor: '#8e5ea2',
+                            fill: false,
+                            tension: 0.1,
+                            pointRadius: 8,
+                            pointHitRadius: 100,
+                            pointHoverRadius: 10
+                        },
+                    ]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            stacked: false
+                        },
+                        y: {
+                            beginAtZero: true,
+                        }
+                    },
+                }
+            });
+
+            // Search Functionality
+            const searchBar = document.getElementById('searchBar');
+            searchBar.addEventListener('input', function() {
+                const query = this.value.toLowerCase();
+                document.querySelectorAll('section').forEach(section => {
+                    if (section.id !== 'home' && section.innerText.toLowerCase().includes(query)) {
+                        section.style.display = 'block';
+                    } else if (section.id !== 'home') {
+                        section.style.display = 'none';
+                    }
+                });
             });
         });
-    });
 
-    // Collapsible Sections
-    const collapsibles = document.querySelectorAll('.collapsible');
-    collapsibles.forEach(button => {
-        button.addEventListener('click', function() {
-            this.classList.toggle('active');
-            const content = this.nextElementSibling;
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-            } else {
-                content.style.maxHeight = content.scrollHeight + 'px';
-            }
-        });
-    });
-
-    // Chart.js Integration for Salary Chart
-    const ctx = document.getElementById('salaryChart').getContext('2d');
-    const salaryChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Computer Engineering', 'Electrical Engineering'],
-            datasets: [
-                {
-                    label: 'Low Salary',
-                    data: [59987, 65998],
-                    backgroundColor: '#3e95cd'
-                },
-                {
-                    label: 'Median Salary',
-                    data: [93600, 94993.],
-                    backgroundColor: '#8e5ea2'
-                },
-                {
-                    label: 'High Salary',
-                    data: [132496, 150404],
-                    backgroundColor: '#3cba9f'
-                }
-            ]
-        },
-        options: {
-            scales: {
-                x: {
-                    stacked: false
-                },
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-    });
 
     </script>
     <style>
@@ -86,6 +143,12 @@
         background-size: cover; /* Cover the entire page */
         background-repeat: repeat; /* Do not repeat the image */
         background-attachment: fixed; /* Fixed background */
+    }
+
+    .responsive-img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
     }
 
     header {
@@ -256,9 +319,12 @@
             <h2>Welcome to the Engineering Career Comparison Hub</h2>
             <p>Engineering is a field of innovation and development, with numerous specializations offering diverse career opportunities. This website aims to compare two prominent engineering fields: computer engineering and electrical engineering. Explore the pages to understand the educational requirements, job roles, industry applications, and career prospects of each field.</p>
         </section>
-
         <section id="computer-engineering">
             <h2>Computer Engineering: A Deep Dive</h2>
+            <img
+            class="responsive-img"
+            src="https://assets-global.website-files.com/5b6df8bb681f89c158b48f6b/5dbbfe105afb5684c71e72b4_what-is-computer-engineering.jpg"
+            alt="Grapefruit slice atop a pile of other slices" />
             <p>Computer engineering focuses on the design, development, and maintenance of computer systems and components. This includes both hardware and software aspects.</p>
             <button class="collapsible">Educational Requirements</button>
             <div class="content">
@@ -266,11 +332,11 @@
             </div>
             <button class="collapsible">Job Roles and Responsibilities</button>
             <div class="content">
-                <p>Common job titles include software developer, hardware engineer, systems architect, and network engineer. Responsibilities often involve coding, debugging, software design, and hardware integration.</p>
+                <p>Common job titles include software developer, hardware engineer, systems architect,application specific integrated circuit (ASIC) design engineer, capacity planning analyst, computer engineer, computer engineer (except software), computer engineering project manager and network engineer. Responsibilities often involve research, plan, design, develop, modify, evaluate and integrate computer and telecommunications hardware and related equipment, and information and communication system networks including mainframe systems, local and wide area networks, fibre-optic networks, wireless communication networks, intranets, the Internet and other data communications systems.</p>
             </div>
             <button class="collapsible">Industry Applications</button>
             <div class="content">
-                <p>Computer engineers are employed in various industries, including information technology, finance, healthcare, and telecommunications. They work for tech companies, startups, and research institutions.</p>
+                <p>Computer engineers are employed in various industries, including information technology, finance, healthcare, and telecommunications. They are employed by computer and telecommunication hardware manufacturers, by engineering, manufacturing and telecommunications firms, in information technology consulting firms, by governmental, educational and research institutions and in information technology units throughout the private and public sectors.</p>
             </div>
             <button class="collapsible">Salary and Job Market Trends</button>
             <div class="content">
@@ -280,6 +346,10 @@
 
         <section id="electrical-engineering">
             <h2>Electrical Engineering: A Deep Dive</h2>
+            <img
+            class="responsive-img"
+            src="https://www.k-state.edu/academics/images/guides/2021/engineering/electrical-engineering.jpg"
+            alt="Grapefruit slice atop a pile of other slices" />
             <p>Electrical engineering involves designing, developing, testing, and managing the manufacturing of electrical equipment, components, and systems. This field covers a wide range of technologies from small circuits to large power networks.</p>
             <button class="collapsible">Educational Requirements</button>
             <div class="content">
@@ -368,6 +438,8 @@
             <h3>Average Wage Comparison</h3>
             <p>Below is a chart for the avrage wage of Computer engineers and Electrical Engineers across Ontario.</p>
             <canvas id="salaryChart"></canvas>
+            <h3>Annual Job Postings Comparison</h3>
+            <canvas id="jobPostingsChart"></canvas>
 
         <section id="resources">
             <h2>Resources</h2>
