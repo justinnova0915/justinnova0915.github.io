@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CNC Machine Codes Cheat Sheet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 850px;
+            margin: 20px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        .code-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        .code-card {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .code-card h2 {
+            margin-top: 0;
+            color: #0066cc;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        @media print {
+            body {
+                max-width: 100%;
+                margin: 0;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>CNC Machine Codes Cheat Sheet</h1>
+    <div class="code-section">
+        <div class="code-card">
+            <h2>G00</h2>
+            <p>Rapid Positioning: Moves machine axes at maximum speed to a specified coordinate.</p>
+        </div>
+        <div class="code-card">
+            <h2>G01</h2>
+            <p>Linear Interpolation: Moves machine in a straight line at a controlled feed rate.</p>
+        </div>
+        <div class="code-card">
+            <h2>G02</h2>
+            <p>Clockwise Circular Interpolation: Moves machine in a circular path clockwise.</p>
+        </div>
+        <div class="code-card">
+            <h2>G03</h2>
+            <p>Counterclockwise Circular Interpolation: Moves machine in a circular path counterclockwise.</p>
+        </div>
+        <div class="code-card">
+            <h2>G20</h2>
+            <p>Inch Units: Sets programming units to inches for subsequent commands.</p>
+        </div>
+        <div class="code-card">
+            <h2>G21</h2>
+            <p>Metric Units: Sets programming units to millimeters for subsequent commands.</p>
+        </div>
+        <div class="code-card">
+            <h2>G28</h2>
+            <p>Return to Home Position: Moves all axes to their predefined home or reference positions.</p>
+        </div>
+        <div class="code-card">
+            <h2>G90</h2>
+            <p>Absolute Positioning: Coordinates are referenced from the machine's origin point.</p>
+        </div>
+        <div class="code-card">
+            <h2>G91</h2>
+            <p>Incremental Positioning: Coordinates are referenced relative to the current position.</p>
+        </div>
+        <div class="code-card">
+            <h2>M02</h2>
+            <p>Program End: Terminates the CNC program and resets modal settings.</p>
+        </div>
+        <div class="code-card">
+            <h2>M03</h2>
+            <p>Spindle Clockwise: Starts spindle rotation in clockwise direction.</p>
+        </div>
+        <div class="code-card">
+            <h2>M04</h2>
+            <p>Spindle Counterclockwise: Starts spindle rotation in counterclockwise direction.</p>
+        </div>
+        <div class="code-card">
+            <h2>M05</h2>
+            <p>Spindle Stop: Halts spindle rotation immediately.</p>
+        </div>
+        <div class="code-card">
+            <h2>M30</h2>
+            <p>Program End and Reset: Terminates program, resets, and returns to initial state.</p>
+        </div>
+        <div class="code-card">
+            <h2>G54</h2>
+            <p>Work Coordinate System: Selects the first work coordinate system for part zero.</p>
+        </div>
+        <div class="code-card">
+            <h2>G92</h2>
+            <p>Coordinate System Offset: Sets a temporary coordinate system without changing machine zero.</p>
+        </div>
+        <div class="code-card">
+            <h2>M06</h2>
+            <p>Tool Change: Instructs machine to change the current cutting tool.</p>
+        </div>
+    </div>
+</body>
+</html>
